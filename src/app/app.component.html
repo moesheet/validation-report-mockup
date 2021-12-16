@@ -1,0 +1,326 @@
+<div class="validation-report-wrapper" [ngClass]="{'maximized': maximized}">
+
+  <div class="validation-report-header">
+    <div class="logos-panel panel">
+      <img class="logo" [src]="europeanComissionLogo" />
+      <img class="logo" [src]="eurostatLogo" />
+    </div>
+    <div class="title-panel panel">
+      <h1>
+        Validation Report
+      </h1>
+    </div>
+    <div class="buttons-panel panel">
+      <button mat-button class="border-radius small" matTooltip="Attach Validation Report to email">
+        <span class="icon icon-envelope-o"></span>
+      </button>
+      <button mat-button class="border-radius small" matTooltip="Export Validation Report in PDF format">
+        <span class="icon icon-file-pdf-o"></span>
+      </button>
+      <button (click)="close()" class="border-radius small" mat-button matTooltip="Close">
+        <span class="icon icon-close1"></span>
+      </button>
+    </div>
+  </div>
+  <mat-accordion>
+    <mat-expansion-panel expanded="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span class="icon icon-perm_data_setting"></span>
+          <span class="title">Specifications & Statistics</span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="statistics-panel">
+        <div class="widget metadata" [ngClass]="{'flipped': widget1Flipped}">
+          <div class="widget-front">
+            <div class="widget-title">
+              <div class="h3">
+                <div class="transmission-type">
+                  <span class="icon-certificate"></span>
+                  Official transmission
+                </div>
+              </div>
+              <button mat-button class="border-radius" matTooltip="Flip Card" (click)="flipWidget(1)">
+                <span class="icon icon-angle-right"></span>
+              </button>
+            </div>
+            <div class="widget-body">
+              <div class="text">
+                <img class="flag" [src]="belgiumFlag" matTooltip="BE" />
+                MILK_TABLEA_M for 2020-0002, Version 0002
+              </div>
+              <div class="limitation-note">
+                <span class="note">NOTE: </span> Error limited reached. The submitted data may contain errors beyond the
+                ones displayed in present report.
+              </div>
+            </div>
+            <div class="widget-footer">
+              <span class="light-label">
+                <!-- The submitted data failed validation -->
+                <div class="validation-statement">
+                  <span class="icon-exclamation"></span>
+                  The submitted data failed validation
+                </div>
+              </span>
+            </div>
+          </div>
+          <div class="widget-back">
+            <div class="metadata-panel">
+              <div class="metadata-entry">
+                <span class="title">Data Provider:</span>
+                <span class="value">BE</span>
+              </div>
+
+              <div class="metadata-entry">
+                <span class="title">Data Submitted On:</span>
+                <span class="value">01/10/2021 14:34:09</span>
+              </div>
+              <div class="metadata-entry">
+                <span class="title">Data Structure (DSD):</span>
+                <span class="value">DSD ID</span>
+              </div>
+              <div class="metadata-entry">
+                <span class="title">Process Type:</span>
+                <span class="value">OFFICIAL TRANSMISSION</span>
+              </div>
+              <div class="metadata-entry">
+                <span class="title">Processed On:</span>
+                <span class="value">01/10/2021 14:35:03</span>
+              </div>
+              <div class="metadata-entry">
+                <span class="title">Validated Dataset:</span>
+                <span class="value">MILK_TABLEA_M for 2020-0002, Version 0002</span>
+              </div>
+              <div class="metadata-entry">
+                <span class="title">Ruleset:</span>
+                <span class="value">AGENCY_MILK_MILK_TABLEA_M_PROGRAM</span>
+              </div>
+              <div class="metadata-entry">
+                <span class="title">Generated On:</span>
+                <span class="value">01/10/2021 14:35:03</span>
+              </div>
+              <div class="metadata-entry">
+                <span class="title">Actors:</span>
+                <span class="value">CONVAL v20.4.2</span>
+              </div>
+            </div>
+            <button mat-button class="border-radius close-btn" matTooltip="Flip Card" (click)="flipWidget(1)">
+              <span class="icon icon-close1"></span>
+            </button>
+          </div>
+        </div>
+        <div class="chart">
+          <canvas id="stackedBar">{{ stackedBarChart }}</canvas>
+        </div>
+        <div class="chart">
+          <canvas id="doughnutChart">{{doughnutChart}}</canvas>
+        </div>
+      </div>
+      <div class="widget-group">
+        <div class="widget" [ngClass]="{'flipped': widget2Flipped}">
+          <div class="widget-front">
+            <div class="widget-body">
+              <button mat-button class="border-radius" matTooltip="Flip Card" (click)="flipWidget(2)">
+                <span class="icon icon-angle-right"></span>
+              </button>
+              <div class="light red"> 12 </div>
+              <div class="text">ERRORS </div>
+            </div>
+            <div class="widget-footer">
+              <span class="light-label"> Please correct data </span>
+            </div>
+          </div>
+          <div class="widget-back">
+            <button mat-button class="border-radius close-btn" matTooltip="Flip Card" (click)="flipWidget(2)">
+              <span class="icon icon-close1"></span>
+            </button>
+            <div class="text"> Erros in detail</div>
+          </div>
+        </div>
+        <div class="widget" [ngClass]="{'flipped': widget3Flipped}">
+          <div class="widget-front">
+            <div class="widget-body">
+              <button mat-button class="border-radius" matTooltip="Flip Card" (click)="flipWidget(3)">
+                <span class="icon icon-angle-right"></span>
+              </button>
+              <div class="light orange"> 47 </div>
+              <div class="text">WARNINGS </div>
+            </div>
+            <div class="widget-footer">
+              <span class="light-label"> Data review required </span>
+            </div>
+          </div>
+          <div class="widget-back">
+            <button mat-button class="border-radius close-btn" matTooltip="Flip Card" (click)="flipWidget(3)">
+              <span class="icon icon-close1"></span>
+            </button>
+            <div class="text"> You can show some detailed information about this widget in here. </div>
+          </div>
+        </div>
+        <div class="widget" [ngClass]="{'flipped': widget4Flipped}">
+          <div class="widget-front">
+            <div class="widget-body">
+              <button mat-button class="border-radius" matTooltip="Flip Card" (click)="flipWidget(4)">
+                <span class="icon icon-angle-right"></span>
+              </button>
+              <div class="light blue"> 7 </div>
+              <div class="text">INFO </div>
+            </div>
+            <div class="widget-footer">
+              <span class="light-label"> Information available </span>
+            </div>
+          </div>
+          <div class="widget-back">
+            <button mat-button class="border-radius close-btn" matTooltip="Flip Card" (click)="flipWidget(4)">
+              <span class="icon icon-close1"></span>
+            </button>
+            <div class="text"> More info if required</div>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span class="icon icon-assignment_late"></span>
+          <span class="title">Validation Results</span>
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+      <div class="results-panel">
+        <div class="results-body">
+          <div class="block">
+            <div class="table-wrapper relative-position">
+              <div class="ecui-card on-scroll-top searcher-bar-shown">
+                <table card-type="header" class="mat-table fixed table-header">
+                  <thead class="mat-head">
+                    <tr class="mat-row">
+                      <th class="mat-column mat-column-selection">
+                        <mat-checkbox matTooltip="Select All"></mat-checkbox>
+                      </th>
+                      <th class="mat-column mat-column-messageId" title="Message Id">
+                        <div class="text"><span>Message Id</span>
+                        </div>
+                      </th>
+                      <th class="mat-column" title="Name">
+                        <div class="text"><span>Name</span>
+                        </div>
+                      </th>
+                      <th class="mat-column" title="Type">
+                        <div class="text"><span>Type</span>
+                        </div>
+                      </th>
+                      <th class="mat-column" title="Value">
+                        <div class="text"><span>Value</span>
+                        </div>
+                      </th>
+                      <th class="mat-column" title="Occurrence(s)">
+                        <div class="text"><span>Occurrence(s)</span>
+                        </div>
+                      </th>
+                      <th class="mat-column" title="Severity">
+                        <div class="text"><span>Severity</span>
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+                <div class="scrollable-content" style="transform: translateY(0px);">
+                  <table card-type="body" class="mat-table">
+                    <tbody class="mat-body">
+                      <tr class="mat-row" *ngFor="let error of filteredErrors"
+                        [ngClass]="{'highlight': error === selectedError}">
+                        <td class="mat-cell mat-column-selection">
+                          <mat-checkbox></mat-checkbox>
+                        </td>
+                        <td class="mat-cell mat-column-selection" (click)="clickErrorCell(error)">
+                          {{error.messageId}}
+                        </td>
+                        <td class="mat-cell mat-column-selection" (click)="clickErrorCell(error)">
+                          {{error.conceptName}}
+                        </td>
+                        <td class="mat-cell mat-column-selection" (click)="clickErrorCell(error)">
+                          {{error.conceptType}}
+                        </td>
+                        <td class="mat-cell mat-column-selection" (click)="clickErrorCell(error)">
+                          {{error.conceptValue}}
+                        </td>
+                        <td class="mat-cell mat-column-selection" (click)="clickErrorCell(error)">
+                          {{error.occurrences}}
+                        </td>
+                        <td class="mat-cell mat-column-selection" (click)="clickErrorCell(error)">
+                          {{error.severity}}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="block" *ngIf="selectedError" [@enterAnimation]>
+            <div class="section">
+              <div class="section-title"></div>
+              <div class="section-content error-group">
+                <p>
+                  <span class="key">Message Id:</span>
+                  <span class="value">{{selectedError?.messageId}}</span>
+                </p>
+                <p>
+                  <span class="key">Concept Name:</span>
+                  <span class="value">{{selectedError?.conceptName}}</span>
+                </p>
+
+                <p>
+                  <span class="key">Concept Type:</span>
+                  <span class="value">{{selectedError?.conceptType}}</span>
+                </p>
+                <p>
+                  <span class="key">Concept Value:</span>
+                  <span class="value">{{selectedError?.conceptValue}}</span>
+                </p>
+
+                <p>
+                  <span class="key">Severity Type:</span>
+                  <span class="value">{{selectedError?.severity}}</span>
+                </p>
+                <p>
+                  <span class="key">Description 1:</span>
+                  <span class="value">{{selectedError?.description1}}</span>
+                </p>
+                <p>
+                  <span class="key">Description 2:</span>
+                  <span class="value">{{selectedError?.description2}}</span>
+                </p>
+
+                <p>
+                  <span class="key">Number Of Occurrences:</span>
+                  <span class="value">{{selectedError?.occurrences}}</span>
+                </p>
+                <p>
+                  <span class="key">First Occurrences:</span>
+                </p>
+                <ul>
+                  <li *ngFor="let item of selectedError?.firstOccurrences">
+                    <span>{{item}}</span>
+                  </li>
+                </ul>
+                <p>
+                  <span class="key">Next Occurrences:</span>
+                </p>
+                <ul>
+                  <li *ngFor="let item of selectedError?.nextOccurrences">
+                    <span>{{item}}</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="section-title last"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
